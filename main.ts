@@ -11,12 +11,15 @@ input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
     }
 })
 radio.onReceivedString(function (receivedString) {
-    if (true) {
-        if (receivedString == "player") {
-            radio.sendString("1")
-        } else if (false) {
-        	
-        }
+    if (receivedString == "player") {
+        Player1 = 1
+        radio.setGroup(99)
+        radio.sendString("" + (Player1))
+        radio.setGroup(88)
+    }
+    if (receivedString == "player") {
+        Player2 = 2
+        radio.sendString("" + (Player2))
     }
 })
 radio.onReceivedValue(function (name, value) {
@@ -34,5 +37,7 @@ radio.onReceivedValue(function (name, value) {
 })
 let Punkte_S2 = 0
 let Punkte_S1 = 0
+let Player2 = 0
+let Player1 = 0
 let Aktion = 0
 radio.setGroup(88)
