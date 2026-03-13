@@ -8,19 +8,6 @@ input.onButtonEvent(Button.AB, input.buttonEventClick(), function () {
         radio.sendNumber(3)
     }
 })
-radio.onReceivedValue(function (name, value) {
-    if ("1" == name && value == Aktion) {
-        Punkte_S1 += 1
-    } else if ("2" == name && value == Aktion) {
-        Punkte_S2 += 1
-    }
-    if ("1" == name && value != Aktion) {
-        Punkte_S1 += Punkte_S1 - 1
-    }
-    if ("2" == name && value != Aktion) {
-        Punkte_S2 += Punkte_S2 - 1
-    }
-})
 input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
     basic.showString("S1:")
     basic.showNumber(Punkte_S1)
@@ -30,18 +17,29 @@ input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
 radio.onReceivedString(function (receivedString) {
     if (receivedString == "player") {
         basic.showString("claim")
-        if (a == 0) {
-            radio.setGroup(99)
+        if (a == 1) {
+            radio.sendString("" + (a))
+            a = 2
+        } else if (a == 2) {
             radio.sendString("" + (a))
             radio.setGroup(88)
             a = 1
         }
-        if (a == 1) {
-            radio.setGroup(99)
-            radio.sendString("" + (a))
-            radio.setGroup(88)
-            a = 0
-        }
+    }
+})
+radio.onReceivedValue(function (name, value) {
+    if ("1" == name && value == Aktion) {
+        Punkte_S1 += 1
+    } else if ("2" == name && value == Aktion) {
+        Punkte_S2 += 1
+    }
+    if ("1" == name && value != Aktion) {
+        Punkte_S1 += Punkte_S1 - 1
+    } else {
+    	
+    }
+    if ("2" == name && value != Aktion) {
+        Punkte_S2 += Punkte_S2 - 1
     }
 })
 input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
@@ -55,5 +53,5 @@ let Punkte_S2 = 0
 let Punkte_S1 = 0
 let Aktion = 0
 let a = 0
-radio.setGroup(88)
-a = 0
+radio.setGroup(99)
+a = 1
