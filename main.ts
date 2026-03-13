@@ -1,9 +1,3 @@
-input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
-    basic.showString("S1:")
-    basic.showNumber(Punkte_S1)
-    basic.pause(1000)
-    basic.clearScreen()
-})
 input.onButtonEvent(Button.AB, input.buttonEventClick(), function () {
     Aktion = randint(1, 3)
     if (Aktion == 1) {
@@ -27,10 +21,9 @@ radio.onReceivedValue(function (name, value) {
         Punkte_S2 += Punkte_S2 - 1
     }
 })
-input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
-    let Player2 = 0
-    basic.showString("S2:")
-    basic.showNumber(Player2)
+input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
+    basic.showString("S1:")
+    basic.showNumber(Punkte_S1)
     basic.pause(1000)
     basic.clearScreen()
 })
@@ -51,9 +44,16 @@ radio.onReceivedString(function (receivedString) {
         }
     }
 })
+input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
+    let Player2 = 0
+    basic.showString("S2:")
+    basic.showNumber(Player2)
+    basic.pause(1000)
+    basic.clearScreen()
+})
 let Punkte_S2 = 0
-let Aktion = 0
 let Punkte_S1 = 0
+let Aktion = 0
 let a = 0
 radio.setGroup(88)
 a = 0
