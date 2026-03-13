@@ -1,25 +1,27 @@
-input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
-    Aktion = randint(0, 3)
-    if (Aktion == 0) {
-        radio.sendNumber(0)
-    } else if (Aktion == 1) {
+radio.onReceivedString(function (receivedString) {
+    if (receivedString == "player") {
+        if (a == 0) {
+            radio.setGroup(99)
+            radio.sendString("" + (a))
+            radio.setGroup(88)
+            a = 1
+        }
+        if (a == 1) {
+            radio.setGroup(99)
+            radio.sendString("" + (a))
+            radio.setGroup(88)
+            a = 0
+        }
+    }
+})
+input.onButtonEvent(Button.AB, input.buttonEventClick(), function () {
+    Aktion = randint(1, 3)
+    if (Aktion == 1) {
         radio.sendNumber(1)
     } else if (Aktion == 2) {
         radio.sendNumber(2)
     } else if (Aktion == 3) {
         radio.sendNumber(3)
-    }
-})
-radio.onReceivedString(function (receivedString) {
-    if (receivedString == "player") {
-        Player1 = 1
-        radio.setGroup(99)
-        radio.sendString("" + (Player1))
-        radio.setGroup(88)
-    }
-    if (receivedString == "player") {
-        Player2 = 2
-        radio.sendString("" + (Player2))
     }
 })
 radio.onReceivedValue(function (name, value) {
@@ -35,9 +37,18 @@ radio.onReceivedValue(function (name, value) {
         Punkte_S2 += Punkte_S2 - 1
     }
 })
+input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
+    basic.showString("S1:")
+    basic.showNumber(Punkte_S1)
+})
+input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
+    let Player2 = 0
+    basic.showString("S2:")
+    basic.showNumber(Player2)
+})
 let Punkte_S2 = 0
 let Punkte_S1 = 0
-let Player2 = 0
-let Player1 = 0
 let Aktion = 0
+let a = 0
 radio.setGroup(88)
+a = 0
